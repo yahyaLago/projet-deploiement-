@@ -26,8 +26,10 @@ Non, les cinq codes obtenus sont ceux prévus. Le champ en trop est refusé parc
 **Dernière ligne de `python -m pytest` avec `tests/test_casser.py` (dans `tp/tp1`) :**
 
 ```text
-18 passed, 1 warning in 5.20s
+19 passed, 1 warning in 4.77s
 ```
+
+Ces 19 tests sont les 13 du TP1, les 5 de `test_casser.py` et `test_500_degres_est_refuse` (dans `test_demo.py`), l'exemple du polycopié, comme demandé par l'enseignant.
 
 **À quoi sert `@pytest.mark.parametrize` ? Combien de tests pytest compte-t-il pour votre fonction, et pourquoi ?**
 
