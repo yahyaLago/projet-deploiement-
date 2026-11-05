@@ -93,7 +93,7 @@ Lire le fichier du modèle sur le disque à chaque requête ralentirait toutes l
 | `tests/test_data.py` | 3 | les données |
 | `tests/test_train.py` | 3 | l'entraînement du modèle |
 
-Ces 13 tests correspondent au tag `tp1`. La séance 5 ajoute ensuite `tests/test_casser.py` et ses 5 cas, puis `tests/test_demo.py` et son test `test_500_degres_est_refuse`, l'exemple du polycopié. Sur `main`, ce dossier compte donc 19 tests, tous réussis, comme demandé par l'enseignant :
+Ces 13 tests correspondent au tag `tp1`. La séance 5 ajoute ensuite `tests/test_casser.py` et ses 5 cas, puis `tests/test_demo.py` et son test `test_500_degres_est_refuse`, l'exemple du polycopié. Sur `main`, ce dossier compte donc 19 tests, tous réussis :
 
 ```text
 19 passed, 1 warning in 4.77s
