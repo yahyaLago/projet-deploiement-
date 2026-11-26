@@ -1,131 +1,68 @@
-# Compte rendu · TP5 : suivre les entraînements (MLflow) et versionner les données (DVC)
+# Compte rendu TP5 — Ahmed RAOUI
 
-**Groupe :** …  ·  **Membres :** …  ·  **Date :** …
+## Tests
+```text
+================== 32 passed, 4 warnings in 76.24s (0:01:16) ==================
+```
+Le starter comporte cinq tests de suivi qui nécessitent l'implémentation de log_run.
+L'installation editable fait pointer maintai vers ce dossier TP5 plutôt que le TP4.
 
-> Remplissez chaque partie dans ce fichier, puis rendez-le avec la pull request du TP5.
-> Collez les sorties du terminal entre les lignes ``` (trois accents graves).
+## MLflow
+| Run | Recall | Precision | Accuracy | Identifiant | MD5 |
+|---|---:|---:|---:|---|---|
+| v1 défaut | 0.750 | 0.622 | 0.904 | `5b1af8f629bc426ab3c63fab94ffb6f8` | `73e0b7cb` |
+| v1 C=0.01 | 0.691 | 0.653 | 0.908 | `4953b734031044088e56fdf45263d008` | `73e0b7cb` |
+| v1 seuil 0.2 | 0.838 | 0.543 | 0.882 | `6cb8f1cadba24cd2a2d4cbc161c36fec` | `73e0b7cb` |
+| v1 forêt | 0.728 | 0.562 | 0.886 | `8fd1e37186334a8db1961a3f3a8e0abd` | `73e0b7cb` |
+| v2 défaut | 0.741 | 0.650 | 0.916 | `1de049dd139c4c39be1f57aa0b01e281` | `93fdeef2` |
 
----
+Choix sur v1 : v1 seuil 0.2, recall 0.838, précision 0.543.
+Une panne manquée est plus coûteuse qu'une fausse alerte. La forêt est comparée sur les mêmes données.
+Version scikit-learn utilisée : 1.8.0. Le modèle MLflow conserve ses dépendances pour éviter les incompatibilités.
+Les fichiers mlflow.db et mlruns ne doivent pas aller dans Git.
 
-## 1. Mise en place (dans `TP/TP5`)
-
-Dernière ligne de `python -m pytest` après `pip install -r requirements.txt` et `pip install -e .` :
+## DVC
+Reçu v1 :
+```yaml
+outs:
+- md5: 73e0b7cb3c6f795c70c3ddf970b99c15
+  size: 126815
+  hash: md5
+  path: sensors.csv
 
 ```
-(collez ici)
+Le MD5 du reçu est identique au paramètre data_md5 des quatre runs v1.
+Le CSV reste hors Git, le reçu léger est versionné.
+État DVC lors de la modification :
+```text
+Non conservé par le premier script ; les deux reçus Git et leurs MD5 distincts ont été vérifiés lors de la reprise.
+```
+| Version | Commit | MD5 | Lignes |
+|---|---|---|---:|
+| v1 | `191613a6c5e42ca3156b7d4ceea449b60623a717` | `73e0b7cb` | 5000 |
+| v2 | `0557a915700b8750d306f0cfef2b1ef369825a28` | `93fdeef2` | 8000 |
+
+Retour v1 puis v2 vérifié par nombre de lignes et MD5.
+Après suppression du CSV et du cache, dvc pull a restauré la v2 :
+```text
+A       data\sensors.csv
+1 file fetched and 1 file added
+
 ```
 
-Quels tests échouent, et pourquoi ?
+## Comparaison v1/v2 à réglages identiques
+| Version | MD5 | n_train | Recall | Precision |
+|---|---|---:|---:|---:|
+| v1 | 73e0b7cb | 4000 | 0.750 | 0.622 |
+| v2 | 93fdeef2 | 6400 | 0.741 | 0.650 |
 
-…
+Les jeux de test diffèrent : on ne peut pas conclure à une amélioration intrinsèque sans évaluation sur un jeu commun indépendant.
 
-Avant `pip install -e .`, où pointait le package `maintai` installé dans l'environnement ? Et après ?
+## Compréhension
+Git versionne le code et les reçus, DVC les données, MLflow les entraînements et modèles.
+Le remote local évite de publier un chemin personnel ; un stockage partagé serait nécessaire au groupe.
+Le code, les données et le modèle sont retrouvables via Git, DVC et MLflow.
+Le MD5 relie le run à un reçu DVC dans l'historique Git.
 
-…
-
-## 2. Sprint 1 : MLflow
-
-Votre fonction `log_run` (`maintai/tracking.py`) :
-
-```python
-(collez ici)
-```
-
-Dernière ligne de `python -m pytest` à la fin du sprint 1 :
-
-```
-(collez ici)
-```
-
-Vos runs (au moins quatre), relevés dans `mlflow ui` (mode « Model training ») :
-
-| Commande | recall | precision | accuracy |
-|---|---|---|---|
-| `python -m maintai.train` | | | |
-| `python -m maintai.train --C 0.01` | | | |
-| `python -m maintai.train --threshold 0.2` | | | |
-| `python -m maintai.train --model forest` | | | |
-| (votre essai) | | | |
-
-Quel run choisiriez-vous pour MaintAI, et pourquoi ? (Rappel : une panne manquée coûte plus cher qu'une fausse alerte.)
-
-…
-
-Dans `mlflow ui`, ouvrez le modèle d'un run. Quelle version de scikit-learn est indiquée dans son `requirements.txt` ? Quel problème du TP4 cela règle-t-il ?
-
-…
-
-Où MLflow enregistre-t-il les runs sur votre disque ? Ces fichiers vont-ils dans Git ? Pourquoi ?
-
-…
-
-## 3. Sprint 2 : DVC
-
-Contenu de `data/sensors.csv.dvc` après `dvc add data/sensors.csv` :
-
-```
-(collez ici)
-```
-
-Comparez la valeur `md5` de ce fichier au paramètre `data_md5` de votre dernier run MLflow. Que constatez-vous ?
-
-…
-
-Pourquoi `data/sensors.csv` ne va pas dans Git, alors que `data/sensors.csv.dvc` y va ?
-
-…
-
-Après `python -m maintai.dataset --n 8000 --seed 7`, que dit `dvc status` ?
-
-```
-(collez ici)
-```
-
-| Version | Commit Git (`git log --oneline`) | md5 (8 premiers caractères) | Nombre de lignes |
-|---|---|---|---|
-| v1 | | | |
-| v2 | | | |
-
-Revenez à la v1 (`git checkout <commit> -- data/sensors.csv.dvc`, puis `dvc checkout`). Combien de lignes contient `data/sensors.csv` ? Puis revenez à la v2.
-
-…
-
-Supprimez `data/sensors.csv` et le dossier `.dvc/cache`, puis lancez `dvc pull`. Que se passe-t-il ?
-
-…
-
-## 4. Relier modèle et données
-
-Entraînez un modèle sur la v2. Dans `mlflow ui`, comparez ce run à celui de la v1 avec les mêmes réglages :
-
-| Run | data_md5 (8 caractères) | n_train | recall | precision |
-|---|---|---|---|---|
-| v1 | | | | |
-| v2 | | | | |
-
-Peut-on dire que le modèle v2 est « meilleur » ? Pourquoi faut-il être prudent en comparant deux runs entraînés sur des données différentes ?
-
-…
-
-## 5. Décision : l'ADR 004
-
-Dans `docs/adr/004-choix-du-modele.md` : le modèle et le seuil retenus, à partir de votre tableau MLflow. Indiquez l'identifiant du run et le `data_md5` de la version des données utilisée.
-
-## 6. Questions de compréhension
-
-1. Quelle différence entre Git, DVC et MLflow ? Que versionne chacun ?
-   …
-2. Pourquoi le stockage DVC est-il ajouté avec `--local` dans ce TP ? Que faudrait-il pour que tout le groupe partage les mêmes données ?
-   …
-3. Livrer un modèle, c'est trois choses (TP4). Lesquelles, et où sont-elles maintenant ?
-   …
-
-## 7. Le rendu Git
-
-- Lien de la pull request : …
-- Le tag `tp5` existe sur GitHub : oui / non
-- `git status` avant le commit : `mlflow.db`, `mlruns/`, `data/sensors.csv` ou `.dvc/cache` apparaissaient-ils ? oui / non
-
-## 8. Ce qui reste flou
-
-…
+## Rendu
+Pull request et tag tp5 : à vérifier après le push et la fusion du groupe.
