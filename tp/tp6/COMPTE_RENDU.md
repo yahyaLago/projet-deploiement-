@@ -170,7 +170,7 @@ L'image `maintai:0.4.0` ne contient que le code et les bibliothèques figées, d
 
 ## 8. Le rendu Git
 
-- Lien de la pull request : branche `tp6-yahya-baid` sur https://github.com/yahyaLago/projet-deploiement-
+- Lien de la pull request : https://github.com/yahyaLago/projet-deploiement-/pull/8
 - Le tag `tp6` existe sur GitHub : oui, posé sur le commit fusionné dans `main`
 - `git status` avant le commit : `.env`, `models/` ou `data/*.csv` apparaissaient-ils ? non — ils sont listés dans `.gitignore` (`.env`, `models/`, `data/*.csv`)
 
