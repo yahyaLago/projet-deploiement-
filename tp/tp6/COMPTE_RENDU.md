@@ -1,6 +1,6 @@
 # Compte rendu · TP6 : conteneuriser MaintAI (Docker, Docker Compose)
 
-**Groupe :** G1  ·  **Membres :** Yahya Baid  ·  **Date :** 26/11/2026
+**Groupe :** G1  ·  **Membres :** Yahya Baid  ·  **Date :** 26/11/2026, 11:16
 
 > Remplissez chaque partie dans ce fichier, puis rendez-le avec la pull request du TP6.
 > Collez les sorties du terminal entre les lignes ``` (trois accents graves).
