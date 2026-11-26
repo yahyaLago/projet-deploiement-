@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Mise en place (dans `TP/TP4`, avec son propre `.venv`)
+## 1. Mise en place (dans `Livrables/Ahmed_RAOUI/TP4`, avec son propre `.venv`)
 
 J'ai créé et activé un environnement virtuel propre au TP4 :
 

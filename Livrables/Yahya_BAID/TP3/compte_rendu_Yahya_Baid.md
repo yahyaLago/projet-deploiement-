@@ -7,7 +7,7 @@
 
 ---
 
-## 1. Mise en place (dans `TP/TP3`)
+## 1. Mise en place (dans `Livrables/Yahya_BAID/TP3`)
 
 Le starter du TP3 reprend l’API du TP2 et ajoute `maintai/client.py`, `ui/app.py`, `tests/test_client.py` et `tests/test_ui.py`.
 

@@ -1,0 +1,26 @@
+# Ce qui n'entre jamais dans l'image : lourd, local ou secret
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.git/
+dist/
+build/
+*.egg-info/
+tests/
+# Les données : elles arrivent par un volume au lancement
+data/
+# Le modèle : il arrive par un volume au lancement (lecture seule)
+models/
+# Le secret : la clé arrive avec --env-file .env / env_file, jamais dans l'image
+.env
+# MLflow : la base et les artefacts d'entraînement restent sur le PC
+mlflow.db
+mlruns/
+# DVC : le cache et la configuration locale
+.dvc/
+# Fichiers inutiles à l'exécution
+docs/
+web/
+*.md
+releve.json

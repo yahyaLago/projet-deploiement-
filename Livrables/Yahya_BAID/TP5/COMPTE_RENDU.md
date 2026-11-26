@@ -7,7 +7,7 @@ heure:12:08
 
 ---
 
-## 1. Mise en place (dans `TP/TP5`)
+## 1. Mise en place (dans `Livrables/Yahya_BAID/TP5`)
 
 Dernière ligne de `python -m pytest` après `pip install -r requirements.txt` et `pip install -e .` :
 

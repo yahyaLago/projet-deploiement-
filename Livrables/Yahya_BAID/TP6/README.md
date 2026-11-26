@@ -80,7 +80,7 @@ avec les versions exactes des bibliothèques. Les runs sont dans `mlflow.db` et 
 ## Versionner les données avec DVC (TP5)
 
 ```bash
-dvc init --subdir                              # dans TP/TP5
+dvc init --subdir                              # dans le dossier du TP
 dvc add data/sensors.csv                       # crée data/sensors.csv.dvc (versionné par Git)
 dvc remote add --local -d stockage C:/dvc-stockage
 dvc push                                       # copie les données dans le stockage

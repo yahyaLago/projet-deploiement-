@@ -7,7 +7,7 @@
 
 ---
 
-## 1. Mise en place (dans `TP/TP4`, avec son propre `.venv`)
+## 1. Mise en place (dans `Livrables/Yahya_BAID/TP4`, avec son propre `.venv`)
 
 Dernière ligne de `python -m pytest` juste après `pip install -r requirements.txt` :
 

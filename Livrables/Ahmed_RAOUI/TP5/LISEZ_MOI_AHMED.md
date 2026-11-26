@@ -1,6 +1,6 @@
 # TP5 Ahmed RAOUI
 
-Copier ce dossier dans `tp/tp5/` du dépôt de groupe, sur une branche `tp-ahmed-raoui`.
+Ce dossier correspond à `Livrables/Ahmed_RAOUI/TP5` du dépôt de groupe.
 Depuis ce dossier, activer un environnement Python compatible puis :
 ```
 python -m pip install -r requirements.txt

@@ -7,7 +7,7 @@
 
 ---
 
-## 1. Mise en place (dans `TP/TP6`)
+## 1. Mise en place (dans `Livrables/Yahya_BAID/TP6`)
 
 Sortie de `docker run hello-world` (première ligne) et de `docker version` (lignes Client et Server) :
 

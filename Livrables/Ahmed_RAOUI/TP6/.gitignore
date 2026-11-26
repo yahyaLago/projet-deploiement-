@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/*.csv
+models/
+.env
+dist/
+build/
+*.egg-info/
+mlflow.db
+mlruns/
+.ruff_cache/
+.dvc/cache/
+.dvc/config.local
+.dvc/tmp/
